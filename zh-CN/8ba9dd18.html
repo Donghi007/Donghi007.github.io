@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Fourier级数与Fourier变换 | Donghai's  Blog</title><meta name="author" content="Donghai"><meta name="copyright" content="Donghai"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="因为网页渲染问题，数学公式可能显示有问题。 一、函数的傅里叶级数展开我们考虑一个以2Π为周期的函数$ f(x) $,则有：$ f(x+2\pi)&#x3D;f(x) $.我们将其进行傅里叶级数展开有： $ f(x)&#x3D;c0+a_1\cos x+a_2\cos 2x+…+b_1\sin x+b2\sin2x+…&#x3D; c_0+\sum{n&#x3D;1}^{\infty}an\cos nx+\sum{n&#x3D;1}^{\infty">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Fourier级数与Fourier变换 | Donghai's  Blog</title><meta name="author" content="Donghai"><meta name="copyright" content="Donghai"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="因为网页渲染问题，数学公式可能显示有问题。数学公式可以左右滑动~ 一、函数的傅里叶级数展开我们考虑一个以$2\pi$为周期的函数$ f(x) $,则有：$ f(x+2\pi)&#x3D;f(x) $.我们将其进行傅里叶级数展开有：  f(x)&#x3D;c_0+a_1\cos x+a_2\cos 2x+...+b_1\sin x+b_2\sin2x+... &#x3D; c_0+\sum_{n&#x3D;1}^{\infty}a_n\c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Fourier级数与Fourier变换">
 <meta property="og:url" content="https://donghi007.github.io/zh-CN/8ba9dd18.html">
 <meta property="og:site_name" content="Donghai&#39;s  Blog">
-<meta property="og:description" content="因为网页渲染问题，数学公式可能显示有问题。 一、函数的傅里叶级数展开我们考虑一个以2Π为周期的函数$ f(x) $,则有：$ f(x+2\pi)&#x3D;f(x) $.我们将其进行傅里叶级数展开有： $ f(x)&#x3D;c0+a_1\cos x+a_2\cos 2x+…+b_1\sin x+b2\sin2x+…&#x3D; c_0+\sum{n&#x3D;1}^{\infty}an\cos nx+\sum{n&#x3D;1}^{\infty">
+<meta property="og:description" content="因为网页渲染问题，数学公式可能显示有问题。数学公式可以左右滑动~ 一、函数的傅里叶级数展开我们考虑一个以$2\pi$为周期的函数$ f(x) $,则有：$ f(x+2\pi)&#x3D;f(x) $.我们将其进行傅里叶级数展开有：  f(x)&#x3D;c_0+a_1\cos x+a_2\cos 2x+...+b_1\sin x+b_2\sin2x+... &#x3D; c_0+\sum_{n&#x3D;1}^{\infty}a_n\c">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://donghi007.github.io/img/profile.jpg">
 <meta property="article:published_time" content="2025-05-19T13:50:14.000Z">
-<meta property="article:modified_time" content="2025-05-19T14:51:58.824Z">
+<meta property="article:modified_time" content="2025-05-20T03:49:50.527Z">
 <meta property="article:author" content="Donghai">
 <meta property="article:tag" content="math">
 <meta name="twitter:card" content="summary">
@@ -18,7 +18,7 @@
   "url": "https://donghi007.github.io/zh-CN/8ba9dd18.html",
   "image": "https://donghi007.github.io/img/profile.jpg",
   "datePublished": "2025-05-19T13:50:14.000Z",
-  "dateModified": "2025-05-19T14:51:58.824Z",
+  "dateModified": "2025-05-20T03:49:50.527Z",
   "author": [
     {
       "@type": "Person",
@@ -159,12 +159,14 @@
   isHighlightShrink: false,
   isToc: true,
   pageType: 'post'
-}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/profile.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/header-bg.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Donghai's  Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Fourier级数与Fourier变换</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Fourier级数与Fourier变换</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-05-19T13:50:14.000Z" title="发表于 2025-05-19 21:50:14">2025-05-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-19T14:51:58.824Z" title="更新于 2025-05-19 22:51:58">2025-05-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%A3%81%E5%AD%A6%E4%B8%8E%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/">磁学与数学基础</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">884</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>因为网页渲染问题，数学公式可能显示有问题。</p>
-<h2 id="一、函数的傅里叶级数展开"><a href="#一、函数的傅里叶级数展开" class="headerlink" title="一、函数的傅里叶级数展开"></a>一、函数的傅里叶级数展开</h2><p>我们考虑一个以2Π为周期的函数$ f(x) $,则有：$ f(x+2\pi)=f(x) $.我们将其进行傅里叶级数展开有：</p>
-<p>$ f(x)=c<em>0+a_1\cos x+a_2\cos 2x+…+b_1\sin x+b2\sin2x+…<br>= c_0+\sum</em>{n=1}^{\infty}a<em>n\cos nx+\sum</em>{n=1}^{\infty}b_n\sin nx<br>\tag{1} $</p>
-<p>当我们用e指数展开时，根据欧拉公式有：</p>
-<p>$ e^{i\phi}=\cos\phi+i\sin\phi\tag{2} $</p>
-<p>因此有：</p>
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/profile.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/header-bg.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Donghai's  Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Fourier级数与Fourier变换</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Fourier级数与Fourier变换</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-05-19T13:50:14.000Z" title="发表于 2025-05-19 21:50:14">2025-05-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-20T03:49:50.527Z" title="更新于 2025-05-20 11:49:50">2025-05-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%A3%81%E5%AD%A6%E4%B8%8E%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/">磁学与数学基础</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">897</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>因为网页渲染问题，数学公式可能显示有问题。数学公式可以左右滑动~</p>
+<h2 id="一、函数的傅里叶级数展开"><a href="#一、函数的傅里叶级数展开" class="headerlink" title="一、函数的傅里叶级数展开"></a>一、函数的傅里叶级数展开</h2><p>我们考虑一个以$2\pi$为周期的函数$ f(x) $,则有：$ f(x+2\pi)=f(x) $.我们将其进行傅里叶级数展开有：</p>
+<script type="math/tex; mode=display">
+f(x)=c_0+a_1\cos x+a_2\cos 2x+...+b_1\sin x+b_2\sin2x+...
+= c_0+\sum_{n=1}^{\infty}a_n\cos nx+\sum_{n=1}^{\infty}b_n\sin nx
+\tag{1}</script><p>当我们用e指数展开时，根据欧拉公式有：</p>
+<script type="math/tex; mode=display">
+e^{i\phi}=\cos\phi+i\sin\phi \tag{2}</script><p>因此有：</p>
 <script type="math/tex; mode=display">
 \left\{\begin{matrix}
   \cos\phi = \frac{1}{2}(e^{i\phi}+e^{-i\phi})\\
@@ -172,37 +174,39 @@
 \\
 \sin\phi=\frac{1}{2}(e^{i\phi}-e^{-i\phi})\tag{3}
 \end{matrix}\right.</script><p>将式子(3)代入式子(1)有：</p>
-<p>$ \begin{align}f&amp;=c<em>0+\sum</em>{n=1}^{\infty}\frac{1}{2}a<em>n(e^{inx}+e^{-inx})+\sum</em>{n=1}^{\infty}\frac{1}{2i}b<em>n(e^{inx}-e^{-inx})\<br>&amp;= c_0+\sum</em>{n=1}^{\infty}\frac{1}{2}(a<em>n-ib_n)+\sum</em>{n=1}^{\infty}\frac{1}{2}(a_n+ib_n)\end{align}\ $</p>
-<p>此时，引入标注 $ c<em>n = \sum</em>{n=1}^{\infty}\frac{1}{2}(a<em>n-ib_n) $ 和$ c_n=\sum</em>{n=1}^{\infty}\frac{1}{2}(a_n+ib_n). $</p>
-<p>傅里叶级数变为：$ f=c<em>0+\sum</em>{n=1}^{\infty}c<em>ne^{inx}+\sum</em>{n=1}^{\infty}c_{-n}e^{-inx}\tag{4} $</p>
-<p>如果我们拓展n的范围即从$ n\rightarrow-n $则式（4）可以写成：$ f(x)=\sum_{-\infty}^{\infty}c_ne^{inx}\tag{5} $</p>
-<h2 id="二、Fourier-级数的系数"><a href="#二、Fourier-级数的系数" class="headerlink" title="二、Fourier 级数的系数"></a>二、Fourier 级数的系数</h2><p>从上面的步骤，我们已经获取了$ f(x) $复数形式的傅里叶级数。</p>
-<p>即$ f=c<em>0+c_1e^{ix}+c_2e^{2ix}+….+c</em>{-1}e^{-ix}+c_{-2}e^{-2x}+..+ $</p>
+<p>$ \begin{align}f&amp;=c_0+\sum_{n=1}^{\infty}\frac{1}{2}a_n(e^{inx}+e^{-inx})+\sum_{n=1}^{\infty}\frac{1}{2i}b_n(e^{inx}-e^{-inx})\<br>&amp;= c_0+\sum_{n=1}^{\infty}\frac{1}{2}(a_n-ib_n)+\sum_{n=1}^{\infty}\frac{1}{2}(a_n+ib_n)\end{align}$</p>
+<p>此时，引入标注 $ c_n = \sum_{n=1}^{\infty}\frac{1}{2}(a_n-ib_n) $ 和$ c_n=\sum_{n=1}^{\infty}\frac{1}{2}(a_n+ib_n). $</p>
+<p>傅里叶级数变为：</p>
+<script type="math/tex; mode=display">
+f=c_0+\sum_{n=1}^{\infty}c_ne^{inx}+\sum_{n=1}^{\infty}c_{-n}e^{-inx}\tag{4}</script><p>如果我们拓展n的范围即从$ n\rightarrow-n $则式（4）可以写成：</p>
+<script type="math/tex; mode=display">
+f(x)=\sum_{-\infty}^{\infty}c_ne^{inx}\tag{5}</script><h2 id="二、Fourier-级数的系数"><a href="#二、Fourier-级数的系数" class="headerlink" title="二、Fourier 级数的系数"></a>二、Fourier 级数的系数</h2><p>从上面的步骤，我们已经获取了$ f(x) $复数形式的傅里叶级数。</p>
+<p>即$ f=c_0+c_1e^{ix}+c_2e^{2ix}+….+c_{-1}e^{-ix}+c_{-2}e^{-2x}+..+ $</p>
 <p>我们将根据以下步骤求解其系数$ c_0,c_1,….,c_n $</p>
 <ul>
-<li>利用公式$ \int<em>{0}^{2\pi}e^{inx}dx = 2\pi\delta</em>{n,0} $ </li>
+<li>利用公式$ \int_{0}^{2\pi}e^{inx}dx = 2\pi\delta_{n,0} $ </li>
 <li>方程两边同时乘以$ e^{-inx}\text{或}e^{inx} $,然后再进行积分.</li>
 </ul>
 <p>若求$ c_0 $：</p>
-<p>两边直接从0到2Π进行积分有:</p>
-<p>$ \begin{align}\int<em>{0}^{2\pi}f(x)dx&amp;=c_0\int</em>{0}^{2\pi}dx+c<em>1\int</em>{0}^{2\pi}e^{inx}dx+c<em>2\int</em>{0}^{2\pi}e^{2inx}dx+..+…\<br>&amp;\Longrightarrow c<em>0=\frac{1}{2\pi}\int</em>{0}^{2\pi}f(x)dx \end{align} $</p>
-<p>若求$ c<em>n $则两边同乘以$ e^{-inx}<br> $在对两边同时积分，即$ c_n=\frac{1}{2\pi}\int</em>{0}^{2\pi}f(x)e^{-inx}dx $</p>
+<p>两边直接从0到$2\pi$进行积分有:</p>
+<p>$ \begin{align}\int_{0}^{2\pi}f(x)dx&amp;=c_0\int_{0}^{2\pi}dx+c_1\int_{0}^{2\pi}e^{inx}dx+c_2\int_{0}^{2\pi}e^{2inx}dx+..+…\<br>&amp;\Longrightarrow c_0=\frac{1}{2\pi}\int_{0}^{2\pi}f(x)dx \end{align} $</p>
+<p>若求$ c_n $则两边同乘以$ e^{-inx}<br> $在对两边同时积分，即$ c_n=\frac{1}{2\pi}\int_{0}^{2\pi}f(x)e^{-inx}dx $</p>
 <h2 id="三、处理周期不为-2-pi-的函数"><a href="#三、处理周期不为-2-pi-的函数" class="headerlink" title="三、处理周期不为$ 2\pi $的函数"></a>三、处理周期不为$ 2\pi $的函数</h2><p>设$ f(x) $的周期为T，为了区分我们令$ X = T $，$ x= 2\pi $.</p>
 <p>则有：$ \frac{X}{x}=\frac{T}{2\pi}\Longrightarrow x= \frac{2\pi}{T}X $</p>
 <p>将此处的小x替换原来级数展开式(5)中的x,有：</p>
 <p>$ f(x)= \sum_{-\infty}^{\infty}c_ne^{\frac{inx}{T}x} $</p>
 <p>为了方便的计算，我们让周期为某个数的二倍，即$ T=2l $</p>
 <p>$ f=\sum_{-\infty}^{\infty}c_ne^{\frac{in\pi}{l}x} $</p>
-<p>$ c<em>n=\frac{1}{2l}\int</em>{-l}^{l}f(x)e^{\frac{-in\pi}{l}x}dx $</p>
+<p>$ c_n=\frac{1}{2l}\int_{-l}^{l}f(x)e^{\frac{-in\pi}{l}x}dx $</p>
 <h2 id="四、处理无周期结构的函数"><a href="#四、处理无周期结构的函数" class="headerlink" title="四、处理无周期结构的函数"></a>四、处理无周期结构的函数</h2><p>处理无周期的函数的时候，我们假设其周期是无穷大，即$ l\rightarrow \infty $.</p>
 <p>我们设$ k_n=\frac{n\pi x}{l} $,在相邻的n中，$ \Delta n = 1 $,而$ \Delta k = \frac{\pi}{l}\Delta n. $</p>
 <p>我们可以将式子(5)$ f(x)=\sum_{-\infty}^{\infty}c_ne^{inx} $改写为：</p>
-<p>$ \begin{align}f(x)&amp;=\sum<em>{-\infty}^{\infty}c_ne^{ik_nx}\cdot\Delta n\<br>&amp;=\frac{l}{\pi}\sum</em>{-\infty}^{\infty}c_ne^{ik_nx}\Delta k<br>\end{align} $</p>
-<p>此时$ c<em>{k_n}=\frac{1}{2L}\int</em>{-l}^{l}f(x)e^{-ik_nx}dx $</p>
+<p>$ \begin{align}f(x)&amp;=\sum_{-\infty}^{\infty}c_ne^{ik_nx}\cdot\Delta n\<br>&amp;=\frac{l}{\pi}\sum_{-\infty}^{\infty}c_ne^{ik_nx}\Delta k<br>\end{align} $</p>
+<p>此时$ c_{k_n}=\frac{1}{2L}\int_{-l}^{l}f(x)e^{-ik_nx}dx $</p>
 <p>显然，当$ l\rightarrow\infty $时，$ c_{k_n}\rightarrow 0 $,且$ f(x) $会发散（分子含有L）.</p>
-<p>此时构造$ g<em>{k_n}=\frac{l\cdot c_n}{\pi} $,当$ l\rightarrow 0 $时，$ g</em>{k_n} $才有机会收敛为某一个定值。</p>
-<p>那么$ f(x)=\sum<em>{-\infty}^{\infty}g</em>{k_n}e^{ik_nx}\cdot\Delta k $</p>
-<p>$ g<em>{k_n}=\frac{1}{2\pi}\int</em>{-l}^{l}f(x)e^{-ik_nx}dx $</p>
+<p>此时构造$ g_{k_n}=\frac{l\cdot c_n}{\pi} $,当$ l\rightarrow 0 $时，$ g_{k_n} $才有机会收敛为某一个定值。</p>
+<p>那么$ f(x)=\sum_{-\infty}^{\infty}g_{k_n}e^{ik_nx}\cdot\Delta k $</p>
+<p>$ g_{k_n}=\frac{1}{2\pi}\int_{-l}^{l}f(x)e^{-ik_nx}dx $</p>
 <p>将其写成连续的形式有：</p>
 <p>$ f(x)=\int_{-\infty}^{\infty}g(k)e^{ikx}dk<br> $</p>
 <p>$ g(k)=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(x)e^{-ikx}dx $.</p>
