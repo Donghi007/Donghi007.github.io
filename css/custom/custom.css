@@ -11,31 +11,22 @@
 }
 
 
-.collapsible {
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 8px;
+.manual-list {
+  counter-reset: item; /* 初始化计数器 */
+  list-style: none;
+  padding-left: 0;
 }
 
-.collapsible-header {
-  background: #f7f7f7;
-  padding: 10px;
-  width: 100%;
-  text-align: left;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  transition: background 0.3s;
+.manual-list li {
+  position: relative;
+  padding-left: 2em;
 }
 
-.collapsible-header:hover {
-  background: #eaeaea;
-}
-
-.collapsible-content {
-  display: none;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
-  max-height: 0;
+.manual-list li::before {
+  content: counter(item) "."; /* 使用计数器生成序号 */
+  counter-increment: item; /* 每个 <li> 递增计数器 */
+  position: absolute;
+  left: 0;
+  width: 1.5em;
+  text-align: right;
 }
