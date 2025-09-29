@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Skyrmion or Bubble?</title>
+      <link href="/804332c6.html"/>
+      <url>/804332c6.html</url>
+      
+        <content type="html"><![CDATA[<p>本文调研了关于bubble以及skyrmion的特点，总结了bubble的类型以及它们的区别。且严格区分了标准skyrmion与skyrmion-bubble的区别。</p><h3 id="Bubble的类型"><a href="#Bubble的类型" class="headerlink" title="Bubble的类型"></a>Bubble的类型</h3><p>所谓的磁泡是一种磁畴结构，在这个磁畴中，磁矩会按照一定的规律进行排列。磁矩表现出顺时针旋转的或者逆时针旋转的或者更加复杂的排列形式。在单轴各向异性的磁体当中，磁泡的形成一般与垂直各向异性、dipolar-dipolar作用有关。而在手性磁体当中则与海森堡交换作用，DM交换作用有关。</p><p>  磁泡的类型按照磁矩的旋转特点可以分为两类。一类是拓扑数不为0，比如为+1或者-1，我们称为（type-I bubble，图1a-b），为纯粹的顺时针旋转或者逆时针旋转；另一类是拓扑数为零<sup><a href="#fn_2" id="reffn_2">2</a></sup>， 单轴磁体的type-II型磁泡中畴壁应包含一对明暗菲涅耳衬比线  为Bloch线(图1c或者图2，图3)。如下图所示：</p><p><img src="../images/DH000005/1.png" alt="图1 a-d为磁结构的示意图，图i-k为模拟的LTEM的电镜图；图l-n为实验上对应的电镜图。[^1]"></p><p><img src="../images/DH000005/2.png" alt="图2 type-II型bubble，包含了一对明暗菲涅耳衬比线[2]"></p><p><img src="../images/DH000005/3.png" alt="图3，type-II型 bubble。[^1]"></p><h3 id="Skyrmion-其实是一类bubble"><a href="#Skyrmion-其实是一类bubble" class="headerlink" title="Skyrmion 其实是一类bubble?"></a>Skyrmion 其实是一类bubble?</h3><p>目前有观点认为skyrmion也是bubble<sup><a href="#fn_3" id="reffn_3">3</a></sup><sup><a href="#fn_4" id="reffn_4">4</a></sup>. 那么问题来了，既然是bubble,那为什么一开始要叫skyrmion? 文献<sup><a href="#fn_5" id="reffn_5">5</a></sup>提到:” 斯格明子这个概念最初是在半个世纪前的粒子物理学中提出的，现在可以在螺旋磁性材料中实现的磁性斯格明子。磁性斯格明子的自旋漩涡状织构可以通过拓扑来定义粒子的性质；也就是说，二维平面内的所有组成自旋矩只包围球体一次”，此外文献<sup><a href="#fn_6" id="reffn_6">6</a></sup>也提到：”例如，德里克-霍巴特定理指出，铁磁体中的skyrmions应该收缩并坍缩成线性奇点。一般情况下，Derrick - Hobart定理是成立的，但它不适用于用高阶空间导数项消除不稳定性的模型。1961年，数学物理学家托尼·斯格尔姆( Tony Skyrme ), 介绍了一种三维孤子- -被称为介子和重子的亚原子粒子的解”  <strong>即他在60年代提出了一套用于描述介子(pion)间相互作用的非线性场理论, 并进一步预言了一种具有拓扑保护性质的类粒子稳定场结构的存在, 即斯格明子<sup><a href="#fn_7" id="reffn_7">7</a></sup>.  而拓扑保护是指：禁止连续体中不同拓扑构型磁结构之间的转换<sup><a href="#fn_10" id="reffn_10">10</a></sup>。</strong></p><p><img src="../images/DH000005/4.png" alt=""></p><p>有意思的是，标准skyrmion与skyrmion-bubble(chiral bubble),bubble 是可以通过中心磁矩到外平面的角度进行区分的。因为手性磁泡与普通的磁泡(一般仅仅由dippolar 作用形成)或者标准的skyrmion，它们的某些特性是类似的，比如同样具有拓扑数，同样具有相似的电流驱动性质。甚至它们是可以共存的。因此很多人把手性磁泡(chiral bubble称作 skyrmion bubble)。 但它们是由区别的。比如如下图所示<sup><a href="#fn_8" id="reffn_8">8</a></sup>:</p><p><img src="../images/DH000005/5.png" alt=""></p><p>对于较窄的材料参数范围，DMI会导致斯格明子和气泡的共存。图中上半部分显示，对于DMI等于零的情况，单个能量极小值存在(对于半径R1 ,蓝色曲线)，对应于一个经典的磁泡。如果增大DMI，会出现三个极小值(红色曲线)，分别对应一个斯格明子( RS处)、一个手性为DMI所青睐的手性磁泡( R2处)和一个手性相反且能量较高的第二个气泡( R2’处)。 图的下半部分显示了致密斯格明子(具有本质上对应于畴壁宽度的直径)和手性磁泡的轮廓，它们在中心表现出一个大的磁化平台，并且在靠近边缘的畴壁宽度尺度上发生了剧烈的磁化反转( θ为磁化强度与面外方向的夹角)；从斯格明子到手性磁泡的连续转变是否可能的问题仍然必须定量地解决。这让我想起了Bogdanov的一篇文章的图<sup><a href="#fn_9" id="reffn_9">9</a></sup>：</p><p><img src="../images/DH000005/6.png" alt=""></p><hr><h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><blockquote id="fn_1"><sup>1</sup>. Chakrabartty, D., Jamaluddin, S., Manna, S. K. &amp; Nayak, A. K. Tunable room temperature magnetic skyrmions in centrosymmetric kagome magnet Mn4Ga2Sn. Commun Phys 5, 189 (2022).<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a></blockquote><blockquote id="fn_2"><sup>2</sup>. Nakajima, H., Kotani, A., Harada, K. &amp; Mori, S. Two types of magnetic bubbles in MnNiGa observed via Lorentz microscopy. Jpn. J. Appl. Phys. 60, 123003 (2021).<a href="#reffn_2" title="Jump back to footnote [2] in the text."> &#8617;</a></blockquote><blockquote id="fn_3"><sup>3</sup>. Jiang, W. et al. Blowing magnetic skyrmion bubbles. Science 349, 283–286 (2015).<a href="#reffn_3" title="Jump back to footnote [3] in the text."> &#8617;</a></blockquote><blockquote id="fn_4"><sup>4</sup>. Tang, J. et al. Two-dimensional characterization of three-dimensional magnetic bubbles in Fe3Sn2 nanostructures. National Science Review 8, nwaa200 (2021).<a href="#reffn_4" title="Jump back to footnote [4] in the text."> &#8617;</a></blockquote><blockquote id="fn_5"><sup>5</sup>. Tokura, Y. &amp; Kanazawa, N. Magnetic Skyrmion Materials. Chem. Rev. 121, 2857–2897 (2021).<a href="#reffn_5" title="Jump back to footnote [5] in the text."> &#8617;</a></blockquote><blockquote id="fn_6"><sup>6</sup>. Bogdanov, A. N. &amp; Panagopoulos, C. The emergence of magnetic skyrmions. Physics Today 73, 44–49 (2020).<a href="#reffn_6" title="Jump back to footnote [6] in the text."> &#8617;</a></blockquote><blockquote id="fn_7"><sup>7</sup>. Zhao Wei-Sheng et al. Overview and advances in skyrmionics. Acta Phys. Sin. 67, 131205 (2018).<a href="#reffn_7" title="Jump back to footnote [7] in the text."> &#8617;</a></blockquote><blockquote id="fn_8"><sup>8</sup>. Fert, A., Reyren, N. &amp; Cros, V. Magnetic skyrmions: advances in physics and potential applications. <em>Nat Rev Mater</em><strong>2</strong>, 17031 (2017).<a href="#reffn_8" title="Jump back to footnote [8] in the text."> &#8617;</a></blockquote><blockquote id="fn_9"><sup>9</sup>. Bocdanov, A. &amp; Hubert, A. The Properties of Isolated Magnetic Vortices. phys. stat. sol. (b) 186, 527–543 (1994).<a href="#reffn_9" title="Jump back to footnote [9] in the text."> &#8617;</a></blockquote><blockquote id="fn_10"><sup>10</sup>. Je, S.-G. <em>et al.</em> Direct Demonstration of Topological Stability of Magnetic Skyrmions <em>via</em> Topology Manipulation. <em>ACS Nano</em><strong>14</strong>, 3251–3258 (2020).<a href="#reffn_10" title="Jump back to footnote [10] in the text."> &#8617;</a></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 基本概念 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 笔记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Micromagnetic.jl三角形模拟区域的设置</title>
       <link href="/7643df1b.html"/>
       <url>/7643df1b.html</url>
