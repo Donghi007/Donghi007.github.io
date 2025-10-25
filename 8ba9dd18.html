@@ -1,0 +1,259 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Fourier级数与Fourier变换 | Donghai's  Blog</title><meta name="author" content="Donghai"><meta name="copyright" content="Donghai"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="因为mathjax 的CDN问题，数学公式可能显示有问题。可以尝试多刷新几遍网页。数学公式可以左右滑动~ 一、函数的傅里叶级数展开我们考虑一个以$2\pi$为周期的函数$ f(x)\ $,则有：$ f(x+2\pi)&#x3D;f(x) $.我们将其进行傅里叶级数展开有：  f(x)&#x3D;c_0+a_1\cos x+a_2\cos 2x+...+b_1\sin x+b_2\sin2x+... &#x3D; c_0+\su">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fourier级数与Fourier变换">
+<meta property="og:url" content="https://donghi007.github.io/8ba9dd18.html">
+<meta property="og:site_name" content="Donghai&#39;s  Blog">
+<meta property="og:description" content="因为mathjax 的CDN问题，数学公式可能显示有问题。可以尝试多刷新几遍网页。数学公式可以左右滑动~ 一、函数的傅里叶级数展开我们考虑一个以$2\pi$为周期的函数$ f(x)\ $,则有：$ f(x+2\pi)&#x3D;f(x) $.我们将其进行傅里叶级数展开有：  f(x)&#x3D;c_0+a_1\cos x+a_2\cos 2x+...+b_1\sin x+b_2\sin2x+... &#x3D; c_0+\su">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://donghi007.github.io/img/profile.jpg">
+<meta property="article:published_time" content="2025-05-19T13:50:14.000Z">
+<meta property="article:modified_time" content="2025-10-18T08:09:00.498Z">
+<meta property="article:author" content="Donghai">
+<meta property="article:tag" content="math">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://donghi007.github.io/img/profile.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Fourier级数与Fourier变换",
+  "url": "https://donghi007.github.io/8ba9dd18.html",
+  "image": "https://donghi007.github.io/img/profile.jpg",
+  "datePublished": "2025-05-19T13:50:14.000Z",
+  "dateModified": "2025-10-18T08:09:00.498Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Donghai",
+      "url": "https://donghi007.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://donghi007.github.io/8ba9dd18.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Fourier级数与Fourier变换',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom/custom.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/profile.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/header-bg.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Donghai's  Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Fourier级数与Fourier变换</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Fourier级数与Fourier变换</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-05-19T13:50:14.000Z" title="发表于 2025-05-19 21:50:14">2025-05-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-10-18T08:09:00.498Z" title="更新于 2025-10-18 16:09:00">2025-10-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%A3%81%E5%AD%A6%E4%B8%8E%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/">磁学与数学基础</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">909</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>因为mathjax 的CDN问题，数学公式可能显示有问题。可以尝试多刷新几遍网页。数学公式可以左右滑动~</p>
+<h2 id="一、函数的傅里叶级数展开"><a href="#一、函数的傅里叶级数展开" class="headerlink" title="一、函数的傅里叶级数展开"></a>一、函数的傅里叶级数展开</h2><p>我们考虑一个以$2\pi$为周期的函数$ f(x)\ $,则有：$ f(x+2\pi)=f(x) $.我们将其进行傅里叶级数展开有：</p>
+<script type="math/tex; mode=display">
+f(x)=c_0+a_1\cos x+a_2\cos 2x+...+b_1\sin x+b_2\sin2x+...
+= c_0+\sum_{n=1}^{\infty}a_n\cos nx+\sum_{n=1}^{\infty}b_n\sin nx
+\tag{1}</script><p>当我们用e指数展开时，根据欧拉公式有：</p>
+<script type="math/tex; mode=display">
+e^{i\phi}=\cos\phi+i\sin\phi \tag{2}</script><p>因此有：</p>
+<script type="math/tex; mode=display">\begin{equation}
+\left\{\begin{matrix}
+  \cos\phi = \frac{1}{2}(e^{i\phi}+e^{-i\phi})\\
+
+\\
+\sin\phi=\frac{1}{2}(e^{i\phi}-e^{-i\phi})\tag{3}
+\end{matrix}\right.
+\end{equation}</script><p>将式子(3)代入式子(1)有：</p>
+<script type="math/tex; mode=display">\begin{align}f&=c_0+\sum_{n=1}^{\infty}\frac{1}{2}a_n(e^{inx}+e^{-inx})+\sum_{n=1}^{\infty}\frac{1}{2i}b_n(e^{inx}-e^{-inx})\\
+&= c_0+\sum_{n=1}^{\infty}\frac{1}{2}(a_n-ib_n)+\sum_{n=1}^{\infty}\frac{1}{2}(a_n+ib_n)\end{align}</script><p>此时，引入标注 $ c_n = \sum_{n=1}^{\infty}\frac{1}{2}(a_n-ib_n)\ $ 和$ c_n=\sum_{n=1}^{\infty}\frac{1}{2}(a_n+ib_n).$</p>
+<p>傅里叶级数变为：</p>
+<script type="math/tex; mode=display">
+f=c_0+\sum_{n=1}^{\infty}c_ne^{inx}+\sum_{n=1}^{\infty}c_{-n}e^{-inx}\tag{4}</script><p>如果我们拓展n的范围即从$ n\rightarrow-n $则式（4）可以写成：</p>
+<script type="math/tex; mode=display">
+f(x)=\sum_{-\infty}^{\infty}c_ne^{inx}\tag{5}</script><h2 id="二、Fourier-级数的系数"><a href="#二、Fourier-级数的系数" class="headerlink" title="二、Fourier 级数的系数"></a>二、Fourier 级数的系数</h2><p>从上面的步骤，我们已经获取了$ f(x) $复数形式的傅里叶级数。</p>
+<p>即 $ f=c_0+c_1e^{ix}+c_2 e^{2ix} + …. + c_{-1} e^{-ix}+ c_{-2}e^{-2x} +.. + $</p>
+<p>我们将根据以下步骤求解其系数$ c_0,c_1,….,c_n $</p>
+<ul>
+<li>利用公式$ \int_{0}^{2\pi} e^{inx}dx = 2\pi\delta_{n,0} $ </li>
+<li>方程两边同时乘以$ e^{-inx}\text{或} e^{inx} $,然后再进行积分.</li>
+</ul>
+<p>若求$ c_0 $：<br>两边直接从0到$2\pi$进行积分有:</p>
+<script type="math/tex; mode=display">\begin{align}\int_{0}^{2\pi}f(x)dx&=c_0\int_{0}^{2\pi}dx+c_1\int_{0}^{2\pi}e^{inx}dx+c_2\int_{0}^{2\pi}e^{2inx}dx+..+...\\
+&\Longrightarrow c_0=\frac{1}{2\pi}\int_{0}^{2\pi}f(x)dx \end{align}</script><p>若求$ c_n $则两边同乘以$ e^{-inx}$<br> 再对两边同时积分，即<script type="math/tex">c_n=\frac{1}{2\pi}\int_{0}^{2\pi}f(x) e^{-inx}dx</script></p>
+<h2 id="三、处理周期不为-2-pi-的函数"><a href="#三、处理周期不为-2-pi-的函数" class="headerlink" title="三、处理周期不为$ 2\pi $的函数"></a>三、处理周期不为$ 2\pi $的函数</h2><p>设$ f(x) $的周期为T，为了区分我们令$ X = T $，$ x= 2\pi $.</p>
+<p>则有：$ \frac{X}{x}=\frac{T}{2\pi}\Longrightarrow x= \frac{2\pi}{T}X $</p>
+<p>将此处的小x替换原来级数展开式(5)中的x,有：</p>
+<p>$ f(x)= \sum_{-\infty}^ {\infty} c_n e^{\frac{inx}{T} x} $</p>
+<p>为了方便的计算，我们让周期为某个数的二倍，即$ T=2l $</p>
+<p>$ f=\sum_{\infty}^{\infty} c_n e^{\frac{in\pi}{l}x} $</p>
+<p>$ c_n=\frac{1}{2l}\int_{-l}^{l}f(x) e^{\frac{-in\pi}{l}x}dx $</p>
+<h2 id="四、处理无周期结构的函数"><a href="#四、处理无周期结构的函数" class="headerlink" title="四、处理无周期结构的函数"></a>四、处理无周期结构的函数</h2><p>处理无周期的函数的时候，我们假设其周期是无穷大，即$ l\rightarrow \infty $.</p>
+<p>我们设$ k_n=\frac{n\pi x}{l} $,在相邻的n中，$ \Delta n = 1 $,而$ \Delta k = \frac{\pi}{l}\Delta n. $</p>
+<p>我们可以将式子(5)$ f(x)=\sum_{-\infty}^{\infty}c_n e^{inx} $改写为：</p>
+<script type="math/tex; mode=display">\begin{align}f(x)&=\sum_{-\infty}^{\infty}c_ne^{ik_nx}\cdot\Delta n\\
+&=\frac{l}{\pi}\sum_{-\infty}^{\infty}c_ne^{ik_nx}\Delta k
+\end{align}</script><p>此时$ c_{k_n}=\frac{1}{2L}\int_{-l}^{l}f(x) e^{-ik_nx}dx $</p>
+<p>显然，当$ l\rightarrow\infty $时，$ c_{k_n}\rightarrow 0 $,且$ f(x) $会发散（分子含有L）.</p>
+<p>此时构造$ g_{k_n}=\frac{l\cdot c_n}{\pi} $,当$ l\rightarrow 0 $时，$ g_{k_n} $才有机会收敛为某一个定值。</p>
+<p>那么$ f(x)=\sum_{-\infty}^{\infty}g_{k_n} e^{ik_nx}\cdot\Delta k $</p>
+<p>$ g_{k_n}=\frac{1}{2\pi}\int_{-l}^{l}f(x) e^{-ik_nx}dx $</p>
+<p>将其写成连续的形式有：</p>
+<p>$ f(x)=\int_{-\infty}^{\infty}g(k) e^{ikx}dk<br> $</p>
+<p>$ g(k)=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(x) e^{-ikx}dx $.</p>
+<p>此时，我们将函数$ g(k) $称为$ f(x) $的傅里叶变换.</p>
+<p><a target="_blank" rel="noopener" href="https://www.physics.uoguelph.ca/chapter-9-fourier-transform">reference 1</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://donghi007.github.io">Donghai</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://donghi007.github.io/8ba9dd18.html">https://donghi007.github.io/8ba9dd18.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://donghi007.github.io" target="_blank">Donghai's  Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/math/">math</a></div><div class="post-share"><div class="social-share" data-image="/img/profile.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/a59a3594.html" title="如何优雅地创建或管理Python虚拟环境"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">如何优雅地创建或管理Python虚拟环境</div></div><div class="info-2"><div class="info-item-1">为什么要创建虚拟环境？不用虚拟环境行不行？当然你可以不用虚拟环境。创建虚拟环境是为了方便管理我们本地的Python项目。比如我有两个项目A和B. A和B之间它们所需要的包依赖版本可能不一样，甚至python版本也不一样。如果两个项目混在一起运行，当项目A崩溃的时候可能会影响到项目B....</div></div></div></a><a class="pagination-related" href="/e966519e.html" title="Slurm集群上使用jupyter notebook的方法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Slurm集群上使用jupyter notebook的方法</div></div><div class="info-2"><div class="info-item-1">一、创建虚拟环境并安装jupyter lab在集群上使用conda creative -n &lt;your_envs&gt; python=3.10来创建一个python虚拟环境并且指定python版本为3.10 123conda create -n new_env_name python=3.10conda activate new_env_namepip install jupyterlab  二、编辑slurm脚本，在计算节点上运行jupyter 服务 先在集群里面创建一个文件夹存放运行jupyter lab的slurm脚本。该脚本的位置即为jupyter lab的工作目录。 创建一个slurm脚本运行jupyterlab  以下是一个slurm脚本运行jupyterlab 的例子: 1234567891011121314151617#!/bin/bash#SBATCH --partition=gpu#SBATCH --nodes=1 ##SBATCH --ntasks-per-node=1#SBATCH --cpus-per-task=4  ...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/profile.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Donghai</div><div class="author-info-description">充满敬畏之心</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Donghi007" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/info" target="_blank" title="Click Me"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%87%BD%E6%95%B0%E7%9A%84%E5%82%85%E9%87%8C%E5%8F%B6%E7%BA%A7%E6%95%B0%E5%B1%95%E5%BC%80"><span class="toc-number">1.</span> <span class="toc-text">一、函数的傅里叶级数展开</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Fourier-%E7%BA%A7%E6%95%B0%E7%9A%84%E7%B3%BB%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">二、Fourier 级数的系数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%A4%84%E7%90%86%E5%91%A8%E6%9C%9F%E4%B8%8D%E4%B8%BA-2-pi-%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">三、处理周期不为$ 2\pi $的函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%A4%84%E7%90%86%E6%97%A0%E5%91%A8%E6%9C%9F%E7%BB%93%E6%9E%84%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">四、处理无周期结构的函数</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/804332c6.html" title="Skyrmion or Bubble?">Skyrmion or Bubble?</a><time datetime="2025-09-29T14:41:47.000Z" title="发表于 2025-09-29 22:41:47">2025-09-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/7643df1b.html" title="Micromagnetic.jl三角形模拟区域的设置">Micromagnetic.jl三角形模拟区域的设置</a><time datetime="2025-09-28T13:31:00.000Z" title="发表于 2025-09-28 21:31:00">2025-09-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/9ae686d6.html" title="Windows下Spirit的安装">Windows下Spirit的安装</a><time datetime="2025-06-29T13:50:14.000Z" title="发表于 2025-06-29 21:50:14">2025-06-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/e966519e.html" title="Slurm集群上使用jupyter notebook的方法">Slurm集群上使用jupyter notebook的方法</a><time datetime="2025-06-08T12:08:45.000Z" title="发表于 2025-06-08 20:08:45">2025-06-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/8ba9dd18.html" title="Fourier级数与Fourier变换">Fourier级数与Fourier变换</a><time datetime="2025-05-19T13:50:14.000Z" title="发表于 2025-05-19 21:50:14">2025-05-19</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2025 By Donghai</div><div class="framework-info"><span>Powered by </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo </a><span>& </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script async data-pjax src="https://cdnjs.cloudflare.com/ajax/libs/busuanzi/2.3.0/bsz.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

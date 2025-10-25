@@ -1,0 +1,23 @@
+
+.manual-list {
+  counter-reset: item; /* 初始化计数器 */
+  list-style: none;
+  padding-left: 0;
+}
+
+.manual-list li {
+  position: relative;
+  padding-left: 2em;
+}
+
+.manual-list li::before {
+  content: counter(item) "."; /* 使用计数器生成序号 */
+  counter-increment: item; /* 每个 <li> 递增计数器 */
+  position: absolute;
+  left: 0;
+  width: 1.5em;
+  text-align: right;
+}
+
+
+

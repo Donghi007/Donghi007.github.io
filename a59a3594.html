@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>如何优雅地创建或管理Python虚拟环境 | Donghai's  Blog</title><meta name="author" content="Donghai"><meta name="copyright" content="Donghai"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="为什么要创建虚拟环境？不用虚拟环境行不行？当然你可以不用虚拟环境。创建虚拟环境是为了方便管理我们本地的Python项目。比如我有两个项目A和B. A和B之间它们所需要的包依赖版本可能不一样，甚至python版本也不一样。如果两个项目混在一起运行，当项目A崩溃的时候可能会影响到项目B. 此时虚拟环境就能很好地把它们隔离开，让两个项目的运行互不干扰。 如何创建虚拟环境？创建虚拟环境的工具有很多，这里主">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何优雅地创建或管理Python虚拟环境">
+<meta property="og:url" content="https://donghi007.github.io/a59a3594.html">
+<meta property="og:site_name" content="Donghai&#39;s  Blog">
+<meta property="og:description" content="为什么要创建虚拟环境？不用虚拟环境行不行？当然你可以不用虚拟环境。创建虚拟环境是为了方便管理我们本地的Python项目。比如我有两个项目A和B. A和B之间它们所需要的包依赖版本可能不一样，甚至python版本也不一样。如果两个项目混在一起运行，当项目A崩溃的时候可能会影响到项目B. 此时虚拟环境就能很好地把它们隔离开，让两个项目的运行互不干扰。 如何创建虚拟环境？创建虚拟环境的工具有很多，这里主">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://donghi007.github.io/img/profile.jpg">
+<meta property="article:published_time" content="2025-05-18T08:47:45.000Z">
+<meta property="article:modified_time" content="2025-10-18T08:09:00.498Z">
+<meta property="article:author" content="Donghai">
+<meta property="article:tag" content="教程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://donghi007.github.io/img/profile.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "如何优雅地创建或管理Python虚拟环境",
+  "url": "https://donghi007.github.io/a59a3594.html",
+  "image": "https://donghi007.github.io/img/profile.jpg",
+  "datePublished": "2025-05-18T08:47:45.000Z",
+  "dateModified": "2025-10-18T08:09:00.498Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Donghai",
+      "url": "https://donghi007.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://donghi007.github.io/a59a3594.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '如何优雅地创建或管理Python虚拟环境',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom/custom.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/profile.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/header-bg.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Donghai's  Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">如何优雅地创建或管理Python虚拟环境</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">如何优雅地创建或管理Python虚拟环境</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-05-18T08:47:45.000Z" title="发表于 2025-05-18 16:47:45">2025-05-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-10-18T08:09:00.498Z" title="更新于 2025-10-18 16:09:00">2025-10-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python/">Python</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="为什么要创建虚拟环境？不用虚拟环境行不行？"><a href="#为什么要创建虚拟环境？不用虚拟环境行不行？" class="headerlink" title="为什么要创建虚拟环境？不用虚拟环境行不行？"></a>为什么要创建虚拟环境？不用虚拟环境行不行？</h2><p>当然你可以不用虚拟环境。创建虚拟环境是为了方便管理我们本地的Python项目。比如我有两个项目A和B. A和B之间它们所需要的包依赖版本可能不一样，甚至python版本也不一样。如果两个项目混在一起运行，当项目A崩溃的时候可能会影响到项目B. 此时虚拟环境就能很好地把它们隔离开，让两个项目的运行互不干扰。</p>
+<h2 id="如何创建虚拟环境？"><a href="#如何创建虚拟环境？" class="headerlink" title="如何创建虚拟环境？"></a>如何创建虚拟环境？</h2><p>创建虚拟环境的工具有很多，这里主要介绍<strong>两种</strong>常见的创建方式。</p>
+<h3 id="python自带的方式创建-pycharm中常见的方式"><a href="#python自带的方式创建-pycharm中常见的方式" class="headerlink" title="python自带的方式创建(pycharm中常见的方式)"></a>python自带的方式创建(pycharm中常见的方式)</h3><p>第一种是用python自带的工具创建虚拟环境。只要你下载的python版本大于等于3.3(目前最新的已经是3.13，隔了十来个版本)就可以直接用python自带的<code>venv</code>虚拟环境。这种方式是pycharm上创建python项目虚拟环境的默认方式。pycharm会在当前项目的文件夹中创建一个<code>venv</code>文件夹，这个文件夹就是该虚拟环境存放包的主要地方。你的python项目在哪个路径，虚拟环境就会在这个路径的<code>venv</code>目录下。pycharm创建一个项目的时候会默认创建这个文件夹，所以我们不用太担心。</p>
+<p><img src="../images/DH00001/1.png" alt=""></p>
+<p>你要做的只需要去python官网下载一个python解释器，然后安装，配置好python环境。然后打开pycharm, 在pycharm中新建一个项目，默认就会创建<code>venv</code>虚拟环境。如想删除虚拟环境，只需要把整个<code>venv</code>文件夹删除即可。</p>
+<h3 id="使用conda创建虚拟环境-如果你不想用pycharm-推荐学习一下"><a href="#使用conda创建虚拟环境-如果你不想用pycharm-推荐学习一下" class="headerlink" title="使用conda创建虚拟环境(如果你不想用pycharm, 推荐学习一下)"></a>使用conda创建虚拟环境(如果你不想用pycharm, 推荐学习一下)</h3><p>不想使用pycharm,只想轻量地运行python项目。那么可以看一下~</p>
+<p>conda是python的一个包管理器。可以用来给python项目安装依赖包以及创建管理虚拟环境。目前<code>Anconda</code>会自带<code>conda</code>, 但<code>Anconda</code>是一个巨大的包，里面自带了很多python包，比如<code>numpy</code>等。比较臃肿。如果想使用<code>conda</code>不太建议用Anconda, 推荐使用<code>Mini-anconda</code>,它是<code>Anconda</code>的精简版本，只包含了<code>caonda</code>管理器和一些必要的依赖。</p>
+<p>如果想使用conda创建的虚拟环境，可以去Anconda官网或者一些镜像的网站下载安装<code>miniconda</code>。可以参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ajianbeyourself/p/17310681.html">miniconda的安装</a>。如果你装了Anconda也没关系的，<strong>下面的操作同样适用于Anconda。</strong></p>
+<p>假如你是Windos用户，miniconda或者Anconda 安装好了之后强烈推荐在<strong>开始</strong>菜单里面的<code>Anconda Prompt</code></p>
+<p>或者<code>Anconda PowerShell Prompt</code>操作。</p>
+<p><img src="../images/DH00001/2.png" alt=""></p>
+<p>点开你就会发现是一个黑乎乎的命令框(终端)。这就对了！有了这终端，你就可以和所有的conda环境进行友好地对话。</p>
+<p><img src="../images/DH00001/3.png" alt=""></p>
+<p>括号里的<code>(base)</code>表明当前的python环境是<code>base</code>,括号里面显示的名字是什么，就对应哪个虚拟环境。比如现在显示base,就对应conda默认的环境base.  此外你只需要掌握三个命令即可轻松对话conda以及操控它的虚拟环境。这三个命令下面将会一一介绍。</p>
+<h4 id="创建环境：conda-create-n-lt-你的虚拟环境名字-gt"><a href="#创建环境：conda-create-n-lt-你的虚拟环境名字-gt" class="headerlink" title="创建环境：conda create -n &lt;你的虚拟环境名字&gt;"></a><strong>创建环境</strong>：<code>conda create -n &lt;你的虚拟环境名字&gt;</code></h4><p>把尖括号整体换掉你想要的名字即可。比如：<code>conda create -n myven</code>创建了一个名字是myven 的虚拟环境。此时你也可以指定python版本，不指定则是默认conda自带的python版本（取决于你安装conda的版本）。指定很简单：<code>conda create -n myven python=3.10</code>(myven后面空格一下，输入python=3.10)指定了python 3.10的版本。-n 表示name的缩写。</p>
+<p><img src="../images/DH00001/4.png" alt=""></p>
+<p>这个过程会让你输入<code>y</code>回车确定，比如上图的圆圈2。</p>
+<p>创建完之后，只需要按照提示激活环境即可。比如上图的圆圈3，提示你使用<code>conda activate myven</code>激活进入环境，用<code>conda deactivate</code>退出环境。你可以在任意环境中使用<code>conda activate myven</code>进入<code>myven</code>虚拟环境。激活其它环境只需要将<code>activate</code>后面的环境名字换掉即可。</p>
+<p><img src="../images/DH00001/5.png" alt=""></p>
+<p>当我输入激活环境命令以后，旁边的<code>(base)</code>就换成了<code>(myven)</code>表示你已经成功进入这个虚拟环境。如果没出现则表示进入失败，一般不可能进入失败的，检查一下单词拼对了没有。在这个虚拟环境下（myven）, 安装的包也会在这个环境中安装。哪个环境你就看括号里面的名称就行了，不复杂。</p>
+<p>需要注意：<strong>当前激活的环境仅仅对当前这个命令窗口（终端）生效</strong>。你新开一个窗口或终端就会变成<code>base</code>环境(比如下图)。需要重新激活进入。除非你一直保留这个窗口。这个命令窗口(终端)在你不操作的时候 比如我在当前窗口没有执行任何包的安装，且窗口没有程序命令输出，这个时候直接关闭命令窗口是不影响环境的，下次进来的时候重新激活一下环境即可。</p>
+<p><img src="../images/DH00001/6.png" alt=""></p>
+<p>需要注意，<strong>一定要看清楚括号里面的是哪个环境</strong>，不然一不小心装进<code>base</code>环境。当然你也可以在cmd 或者power shell中运行上述命令。但是power shell 或者cmd 激活环境的时候<strong>很容易遇到初始化错误</strong>，因此最省事且最安全的方式还是直接在<code>Anconda Power Shell Prompt</code>或者<code>Anconda Prompt</code>中使用。同理，power shell 或者cmd里面<strong>没有看到括号说明未激活进入虚拟环境</strong>，激活虚拟环境无论在哪个终端，你都会看到一个括号，包括前面提到的<code>venv</code>。没看到括号就说明当前的命令窗口(终端)没有激活环境。此时不要轻易执行python包的安装命令。</p>
+<h4 id="查看虚拟环境有哪些-conda-env-list"><a href="#查看虚拟环境有哪些-conda-env-list" class="headerlink" title="查看虚拟环境有哪些:conda env list"></a><strong>查看虚拟环境有哪些</strong>:<code>conda env list</code></h4><p>这是你需要掌握的第二个命令，查看一下有哪些虚拟环境，比如时间久了你忘记了有哪些虚拟环境。或者虚拟环境名字一下子记不住，但想激活，即可使用这个命令查看。</p>
+<p><img src="../images/DH00001/7.png" alt=""></p>
+<p>此时左边的表示虚拟环境的名称，右边对应虚拟环境保存的路径。星号<code>*</code>表示当前所在的虚拟环境。如果你想更改虚拟环境的目录，请看这里：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/649072923">【知乎】anaconda的envs路径跑到c盘了，修改为D盘</a>。一般我觉得没必要改，除非你内存不够。</p>
+<p>如果你想删除这个虚拟环境，直接跑到目录下删掉即可，然后<code>conda env list</code>就不会显示。还有没有更优雅的删除方式？当然有！</p>
+<h4 id="删除虚拟环境：conda-remove-n-xxxxx-名字-all"><a href="#删除虚拟环境：conda-remove-n-xxxxx-名字-all" class="headerlink" title="删除虚拟环境：conda remove -n xxxxx(名字) --all"></a><strong>删除虚拟环境</strong>：<code>conda remove -n xxxxx(名字) --all</code></h4><p>比如<code>conda remove -n myven --all</code>。即可优雅的删除虚拟环境<code>myven</code>。这是第三个命令。</p>
+<p>前提是你要退出这个虚拟环境<code>conda deactivate</code>一下再执行。不然删除失败。这个过程同样需要你输入<code>y</code>回车确认。</p>
+<p><img src="../images/DH00001/8.png" alt=""></p>
+<p>此时你再使用<code>conda env list</code>就会发现已经没有<code>env</code>环境了。</p>
+<p><img src="../images/DH00001/9.png" alt=""></p>
+<p>因此你只需掌握上面三条命令以及延伸生出来额外两条激活与退出命令即可优雅轻松的使用你的虚拟环境。</p>
+<p>快速总结以及复习一下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">conda create -n myven <span class="comment">#创建一个名字是myven的虚拟环境,-n是name名字的缩写。</span></span><br><span class="line">conda activate myven  <span class="comment">#激活myven虚拟环境，可以在任意环境下使用。</span></span><br><span class="line">conda deactivate <span class="comment">#退出环境，在窗口没有工作时，可以直接关闭窗口退出。</span></span><br><span class="line">conda <span class="built_in">env</span> list   <span class="comment">#查看有哪些虚拟环境以及它们所在的目录。</span></span><br><span class="line">conda remove n myven --all <span class="comment">#删除myven虚拟环境</span></span><br></pre></td></tr></table></figure>
+<h4 id="minniconda-换源"><a href="#minniconda-换源" class="headerlink" title="minniconda 换源"></a>minniconda 换源</h4><p>为什么要换源？因为默认官方的源下载依赖包的时候特别慢，有可能需要fanqiang.</p>
+<p>此时直接访问清华源：<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/">https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/</a></p>
+<p>根据提示把下图圈1的代码粘贴到圈2的文件中去，然后回到conda命令行刷新一下即可。</p>
+<p><img src="../images/DH00001/1.png" alt="">即：先找到<code>.condarc</code>文件，</p>
+<p><img src="../images/DH00001/11.png" alt="">若是找不到这个<code>.condarc</code>文件(一般是能找到的)，可以在<code>Anconda Power Shell Prompt</code>终端中执行：</p>
+<p><code>conda config --set show_channel_urls yes</code> 即可像这样：</p>
+<p><img src="../images/DH00001/12.png" alt=""></p>
+<p>打开<code>.condarc</code>后粘贴从刚才网站复制的内容然后按<code>crtl</code>+<code>S</code>保存:</p>
+<p><img src="../images/DH00001/13.png" alt=""></p>
+<p><code>.condarc</code>会有原来的源链接内容，可以全部删除。不用纠结删除会怎么样。就一个源而已。</p>
+<p>回到<code>Anconda Power Shell Prompt</code>终端，关闭了就重开一个，没什么大不了的。刷新源一下：输入</p>
+<p><code>conda clean -i</code>回车后提示输入y 然后回车继续，即可使用清华源。其它源也一样。建议：<strong>换源的时候一定要去官方的源网站去换，比如刚才的清华源链接。不要求其他论坛比如CSDN上去换，那边的源有可能链接是旧的。</strong></p>
+<p><img src="../images/DH00001/14.png" alt=""></p>
+<h4 id="在pycharm中使用conda虚拟环境（有bug-但不影响整体使用）"><a href="#在pycharm中使用conda虚拟环境（有bug-但不影响整体使用）" class="headerlink" title="在pycharm中使用conda虚拟环境（有bug,但不影响整体使用）"></a>在pycharm中使用conda虚拟环境（有bug,但不影响整体使用）</h4><p>没错，你没看错，pycharm同样支持使用conda的虚拟环境。非常简单！</p>
+<p>现在我举个例子：我先创建一个<code>myven2</code>的虚拟环境：开始菜单里面打开<code>Anconda PowerShell prompt</code>输入<code>conda create -n myven2</code>创建好了就行，先不用激活。</p>
+<p>现在还记得上面找虚拟环境的路径的命令吗？对就是<code>conda env list</code>待会要用到</p>
+<p><img src="../images/DH00001/15.png" alt=""></p>
+<p>现在打开pycharm.你可以新建一个项目，或者用原来的项目，这个都没事。点击右下角的虚拟环境，然后选择<code>Add New Interpreter</code>添加新的解释器。原因是一个虚拟环境对应一个python解释器。</p>
+<p><img src="../images/DH00001/16.png" alt=""></p>
+<p>之后选择侧边选择<code>Conda Environment</code>然后选择现有的环境，最后下拉找到刚才创建的环境<code>myven2</code>即可。最后点击<code>ok</code>.</p>
+<p><img src="../images/DH00001/17.png" alt="">现在右下角就会显示虚拟环境为<code>myven2</code>.如果列表没显示，就需要手动输入conda的安装路径查找。</p>
+<p><img src="../images/DH00001/18.png" alt=""><strong>bug: 千万不要使用Pycharm自带的终端启动或安装任何东西！(仅仅针对conda创建的虚拟环境下)</strong>。因为终端里面的PS (下图第一条红线PS)左边不显示<strong>不显示括号+虚拟环境</strong>的名字。所以这个终端肯定是没有激活虚拟环境的。但是不影响在pycharm中安装依赖包。pycharm中安装其它包是会安装到当前虚拟环境<code>myven2</code>下的，但是终端并不支持，可能是bug。 <strong><font style="color:#DF2A3F;">但没关系，我们可以使用刚才的</font></strong><code>**&lt;font style=&quot;color:#DF2A3F;&quot;&gt;Anconda Powershell Prompt&lt;/font&gt;**</code><strong><font style="color:#DF2A3F;">中激活</font></strong><code>**&lt;font style=&quot;color:#DF2A3F;&quot;&gt;myven2&lt;/font&gt;**</code><strong><font style="color:#DF2A3F;">环境来代替这个终端。</font></strong>比如说安装或者启动jupyter lab，我们可以在<code>Anconda Powershell Prompt</code>中先激活对应的环境，然后再执行相关的安装/启动 命令。</p>
+<p><img src="../images/DH00001/19.png" alt=""></p>
+<p>如果是使用python自带的虚拟环境<code>.ven</code> PS 左边会有括号+虚拟环境名字venv 这才是这个终端激活了虚拟环境。没有的一律没激活虚拟环境。</p>
+<p><img src="../images/DH00001/20.png" alt=""></p>
+<p>尽管conda 在pycharm中存在这个bug, 但这无妨，我们还是可以了解一下conda 的虚拟环境是如何使用的。</p>
+<h2 id="建议："><a href="#建议：" class="headerlink" title="建议："></a>建议：</h2><p>装了pycharm没必要再装miniconda。除非你电脑内存不足。其实pycharm更加智能一点，但也会有bug，比如图片弹不出来，但可以设置保存图片。如果你想体验Vscode或者不想用pycahrm,只想轻量运行python项目那就建议装conda. 其实运行jupyter notebook也是不需要安装conda,pycharm和浏览器中也可以运行notebook,但是pycharm需要专业版。浏览器上没有代码补齐的提示。</p>
+<p>但是在服务器里面是用不了pycharm的，操作也是类似的，服务器上使用conda更加方便，只需要安装miniconda的<code>.sh</code>文件（不需要root）, 然后配置一下conda环境,把conda加入进系统环境。再结合上面的三条命令基本没问题。可以参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/netWild/p/18289735">https://www.cnblogs.com/netWild/p/18289735</a></p>
+<p>如果无法无法运行.sh文件，则赋予其执行权限<code>chmod +x xxx.sh</code> 然后再运行<code>./xxx.sh</code></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://donghi007.github.io">Donghai</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://donghi007.github.io/a59a3594.html">https://donghi007.github.io/a59a3594.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://donghi007.github.io" target="_blank">Donghai's  Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%99%E7%A8%8B/">教程</a></div><div class="post-share"><div class="social-share" data-image="/img/profile.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/8ba9dd18.html" title="Fourier级数与Fourier变换"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Fourier级数与Fourier变换</div></div><div class="info-2"><div class="info-item-1">因为mathjax 的CDN问题，数学公式可能显示有问题。可以尝试多刷新几遍网页。数学公式可以左右滑动~ 一、函数的傅里叶级数展开我们考虑一个以$2\pi$为周期的函数$ f(x)\ $,则有：$ f(x+2\pi)=f(x) $.我们将其进行傅里叶级数展开有：  f(x)=c_0+a_1\cos x+a_2\cos 2x+...+b_1\sin x+b_2\sin2x+... = c_0+\sum_{n=1}^{\infty}a_n\cos nx+\sum_{n=1}^{\infty}b_n\sin nx \tag{1}当我们用e指数展开时，根据欧拉公式有：  e^{i\phi}=\cos\phi+i\sin\phi \tag{2}因此有： \begin{equation} \left\{\begin{matrix}   \cos\phi =...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/9ae686d6.html" title="Windows下Spirit的安装"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-29</div><div class="info-item-2">Windows下Spirit的安装</div></div><div class="info-2"><div class="info-item-1">Spirit目前有两个版本，一个是基于Qt的版本，一个是IMGUI版本。目前来看Qt版本bug比较少（至少在我的电脑上是这样，另外一个版本无法导入ovf文件）。无论是在windows上还是linux上都需要安装Qt这个软件。那么本文将以windows为例讲述spirit的安装。（其实linux上更加简单只需要装一个Qt即可，然后按照官网提示操作就好了，所以本教程侧重在于Windows用户）。如果不想安装Qt，window和Linux用户可以直接看ImGui编译部分。建议先观看Qt部分。 windows C/C++编译器与Cmake的安装 首先去网站：https://visualstudio.microsoft.com/zh-hans/downloads/ 下载安装Community版本的visual Studio,并且安装。如果已经安装可以跳过。    双击安装程序，之后打开visual studio...</div></div></div></a><a class="pagination-related" href="/e966519e.html" title="Slurm集群上使用jupyter notebook的方法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-08</div><div class="info-item-2">Slurm集群上使用jupyter notebook的方法</div></div><div class="info-2"><div class="info-item-1">一、创建虚拟环境并安装jupyter lab在集群上使用conda creative -n &lt;your_envs&gt; python=3.10来创建一个python虚拟环境并且指定python版本为3.10 123conda create -n new_env_name python=3.10conda activate new_env_namepip install jupyterlab  二、编辑slurm脚本，在计算节点上运行jupyter 服务 先在集群里面创建一个文件夹存放运行jupyter lab的slurm脚本。该脚本的位置即为jupyter lab的工作目录。 创建一个slurm脚本运行jupyterlab  以下是一个slurm脚本运行jupyterlab 的例子: 1234567891011121314151617#!/bin/bash#SBATCH --partition=gpu#SBATCH --nodes=1 ##SBATCH --ntasks-per-node=1#SBATCH --cpus-per-task=4  ...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/profile.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Donghai</div><div class="author-info-description">充满敬畏之心</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Donghi007" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/info" target="_blank" title="Click Me"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%EF%BC%9F%E4%B8%8D%E7%94%A8%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E8%A1%8C%E4%B8%8D%E8%A1%8C%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">为什么要创建虚拟环境？不用虚拟环境行不行？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">如何创建虚拟环境？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#python%E8%87%AA%E5%B8%A6%E7%9A%84%E6%96%B9%E5%BC%8F%E5%88%9B%E5%BB%BA-pycharm%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">2.1.</span> <span class="toc-text">python自带的方式创建(pycharm中常见的方式)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8conda%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83-%E5%A6%82%E6%9E%9C%E4%BD%A0%E4%B8%8D%E6%83%B3%E7%94%A8pycharm-%E6%8E%A8%E8%8D%90%E5%AD%A6%E4%B9%A0%E4%B8%80%E4%B8%8B"><span class="toc-number">2.2.</span> <span class="toc-text">使用conda创建虚拟环境(如果你不想用pycharm, 推荐学习一下)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%8E%AF%E5%A2%83%EF%BC%9Aconda-create-n-lt-%E4%BD%A0%E7%9A%84%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%90%8D%E5%AD%97-gt"><span class="toc-number">2.2.1.</span> <span class="toc-text">创建环境：conda create -n &lt;你的虚拟环境名字&gt;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E6%9C%89%E5%93%AA%E4%BA%9B-conda-env-list"><span class="toc-number">2.2.2.</span> <span class="toc-text">查看虚拟环境有哪些:conda env list</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%EF%BC%9Aconda-remove-n-xxxxx-%E5%90%8D%E5%AD%97-all"><span class="toc-number">2.2.3.</span> <span class="toc-text">删除虚拟环境：conda remove -n xxxxx(名字) --all</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#minniconda-%E6%8D%A2%E6%BA%90"><span class="toc-number">2.2.4.</span> <span class="toc-text">minniconda 换源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8pycharm%E4%B8%AD%E4%BD%BF%E7%94%A8conda%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%EF%BC%88%E6%9C%89bug-%E4%BD%86%E4%B8%8D%E5%BD%B1%E5%93%8D%E6%95%B4%E4%BD%93%E4%BD%BF%E7%94%A8%EF%BC%89"><span class="toc-number">2.2.5.</span> <span class="toc-text">在pycharm中使用conda虚拟环境（有bug,但不影响整体使用）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E8%AE%AE%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">建议：</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/804332c6.html" title="Skyrmion or Bubble?">Skyrmion or Bubble?</a><time datetime="2025-09-29T14:41:47.000Z" title="发表于 2025-09-29 22:41:47">2025-09-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/7643df1b.html" title="Micromagnetic.jl三角形模拟区域的设置">Micromagnetic.jl三角形模拟区域的设置</a><time datetime="2025-09-28T13:31:00.000Z" title="发表于 2025-09-28 21:31:00">2025-09-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/9ae686d6.html" title="Windows下Spirit的安装">Windows下Spirit的安装</a><time datetime="2025-06-29T13:50:14.000Z" title="发表于 2025-06-29 21:50:14">2025-06-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/e966519e.html" title="Slurm集群上使用jupyter notebook的方法">Slurm集群上使用jupyter notebook的方法</a><time datetime="2025-06-08T12:08:45.000Z" title="发表于 2025-06-08 20:08:45">2025-06-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/8ba9dd18.html" title="Fourier级数与Fourier变换">Fourier级数与Fourier变换</a><time datetime="2025-05-19T13:50:14.000Z" title="发表于 2025-05-19 21:50:14">2025-05-19</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2025 By Donghai</div><div class="framework-info"><span>Powered by </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo </a><span>& </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="https://cdnjs.cloudflare.com/ajax/libs/busuanzi/2.3.0/bsz.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

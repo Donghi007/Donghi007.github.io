@@ -1,0 +1,273 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Windows下Spirit的安装 | Donghai's  Blog</title><meta name="author" content="Donghai"><meta name="copyright" content="Donghai"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Spirit目前有两个版本，一个是基于Qt的版本，一个是IMGUI版本。目前来看Qt版本bug比较少（至少在我的电脑上是这样，另外一个版本无法导入ovf文件）。无论是在windows上还是linux上都需要安装Qt这个软件。那么本文将以windows为例讲述spirit的安装。（其实linux上更加简单只需要装一个Qt即可，然后按照官网提示操作就好了，所以本教程侧重在于Windows用户）。如果不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows下Spirit的安装">
+<meta property="og:url" content="https://donghi007.github.io/9ae686d6.html">
+<meta property="og:site_name" content="Donghai&#39;s  Blog">
+<meta property="og:description" content="Spirit目前有两个版本，一个是基于Qt的版本，一个是IMGUI版本。目前来看Qt版本bug比较少（至少在我的电脑上是这样，另外一个版本无法导入ovf文件）。无论是在windows上还是linux上都需要安装Qt这个软件。那么本文将以windows为例讲述spirit的安装。（其实linux上更加简单只需要装一个Qt即可，然后按照官网提示操作就好了，所以本教程侧重在于Windows用户）。如果不">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://donghi007.github.io/img/profile.jpg">
+<meta property="article:published_time" content="2025-06-29T13:50:14.000Z">
+<meta property="article:modified_time" content="2025-10-18T08:09:00.498Z">
+<meta property="article:author" content="Donghai">
+<meta property="article:tag" content="教程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://donghi007.github.io/img/profile.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Windows下Spirit的安装",
+  "url": "https://donghi007.github.io/9ae686d6.html",
+  "image": "https://donghi007.github.io/img/profile.jpg",
+  "datePublished": "2025-06-29T13:50:14.000Z",
+  "dateModified": "2025-10-18T08:09:00.498Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Donghai",
+      "url": "https://donghi007.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://donghi007.github.io/9ae686d6.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Windows下Spirit的安装',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom/custom.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/profile.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/header-bg.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Donghai's  Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Windows下Spirit的安装</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Windows下Spirit的安装</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-06-29T13:50:14.000Z" title="发表于 2025-06-29 21:50:14">2025-06-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-10-18T08:09:00.498Z" title="更新于 2025-10-18 16:09:00">2025-10-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%BE%AE%E7%A3%81%E5%AD%A6%E6%A8%A1%E6%8B%9F/">微磁学模拟</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>Spirit目前有两个版本，一个是基于Qt的版本，一个是<code>IMGUI</code>版本。目前来看Qt版本bug比较少（至少在我的电脑上是这样，另外一个版本无法导入ovf文件）。无论是在windows上还是linux上都需要安装Qt这个软件。那么本文将以windows为例讲述spirit的安装。（其实linux上更加简单只需要装一个Qt即可，然后按照官网提示操作就好了，所以本教程侧重在于Windows用户）。如果不想安装Qt，window和Linux用户可以直接看<code>ImGui</code>编译部分。建议先观看Qt部分。</p>
+<h2 id="windows-C-C-编译器与Cmake的安装"><a href="#windows-C-C-编译器与Cmake的安装" class="headerlink" title="windows C/C++编译器与Cmake的安装"></a>windows C/C++编译器与Cmake的安装</h2><ol>
+<li>首先去网站：<a target="_blank" rel="noopener" href="https://visualstudio.microsoft.com/zh-hans/downloads/">https://visualstudio.microsoft.com/zh-hans/downloads/</a> 下载安装<code>Community</code>版本的visual Studio,并且安装。如果已经安装可以跳过。</li>
+</ol>
+<p><img src="../images/DH000003/1.png" alt=""></p>
+<ol>
+<li>双击安装程序，之后打开<code>visual studio installer</code>,仅仅只需要勾选<code>使用C++桌面开发</code>然后点击下载（或者修改）。</li>
+</ol>
+<p><img src="../images/DH000003/2.png" alt="勾选“使用C++的桌面开发”"></p>
+<p>等待进度条跑完之后即安装成功。等下还需要安装cmake，linux用户可以使用自带的gcc。</p>
+<ol>
+<li>安装Cmake</li>
+</ol>
+<p>windows用户去Cmake官网的下载页面选择<code>.msi</code>结尾的安装包双击一路默认安装（也可以修改安装位置）。<a target="_blank" rel="noopener" href="https://cmake.org/download/">https://cmake.org/download/</a> 。</p>
+<p>linux用户直接<code>sudo apt install cmake</code>.(Fedora用户请自行解决)</p>
+<p><img src="../images/DH000003/3.png" alt="选择.msi结尾的安装包"></p>
+<p><strong>安装过程会让你勾选是否加入系统环境变量，这个请勾选上，非常重要。</strong> 如果不勾选，等下你需要手动加入系统路径，手动把Cmake安装路径的<code>bin</code>目录添加进系统环境变量即可。请参考最后一部分内容。</p>
+<p><img src="../images/DH000003/cmake.png" alt="勾选上cmake的添加到系统环境变量"></p>
+<p>cmake安装完之后，打开终端cmd或者powershell，（快捷方式为桌面下<code>win+x</code>选择终端，或者搜索powershell，cmd都是没问题的）</p>
+<p>然后输入<code>cmake --version</code>回车一下，一般会返回版本信息，如果没返回，需要检查一下，应该是环境没配置好。比如你的安装路径含有中文导致识别不了。</p>
+<p><img src="../images/DH000003/9.png" alt="测试cmake是否安装成功"></p>
+<p>如果安装成功了还可以使用<code>cmake -G</code>来查看编译器。</p>
+<p><img src="../images/DH000003/10.png" alt="查看编译器信息"></p>
+<p>带星号的为当前的编译器。我们等下还要用到，现在先忽略。</p>
+<p>接下来开始介绍Qt的安装.</p>
+<h2 id="Qt-安装"><a href="#Qt-安装" class="headerlink" title="Qt 安装"></a>Qt 安装</h2><ol>
+<li>首先去Qt官网（<a target="_blank" rel="noopener" href="https://login.qt.io/login">https://login.qt.io/login</a>）注册一个个人账号。用你的邮箱注册就行，我印象中QQ邮箱注册不了，我换了一个outlook邮箱。反正账号是一定要有的，因为我们使用Qt online installer.</li>
+<li>注册完之后我们进入Qt的下载页面（<a target="_blank" rel="noopener" href="https://www.qt.io/download-qt-installer-oss">https://www.qt.io/download-qt-installer-oss</a>），根据自己系统类型选择下载，我选择的是windows版本。</li>
+</ol>
+<p><img src="../images/DH000003/11.png" alt=""></p>
+<p>考虑到这个链接可能被墙，我们可以使用国内镜像地址(我们使用清华源的qt链接： <a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/qt/">https://mirrors.tuna.tsinghua.edu.cn/help/qt/</a>)(如果上面能下载则跳过用清华源下载的步骤)</p>
+<p>注意，这个页面提示我们打开<code>https://mirrors.tuna.tsinghua.edu.cn/qt/official_releases/online_installers/</code>这个链接。那我们就打开它:<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/qt/official_releases/online_installers/">https://mirrors.tuna.tsinghua.edu.cn/qt/official_releases/online_installers/</a></p>
+<p><img src="../images/DH000003/12.png" alt=""></p>
+<p>windows用户选择<code>.exe</code>的x64标签的，linux用户选择<code>.run</code>的x64标签的。注意不要选<code>arm64</code>，除非你的处理器是arm架构的(一般都x64).</p>
+<p><img src="../images/DH000003/13.png" alt="选择合适的qt版本"></p>
+<p>点击一下即可下载。</p>
+<p>无论你是qt官网下载的installer也好，镜象站下载的也好。下载完之后不要着急打开。我们还要设置下载镜像地址，不然等下下载非常慢（巨慢）。找到刚才的下载好的程序。点击程序所在目录的顶部地址栏。在最前面输入cmd英文空格一下然后回车。</p>
+<p><img src="../images/DH000003/14.png" alt=""></p>
+<p><img src="../images/DH000003/15.png" alt="用cmd打开当前目录方式的介绍"></p>
+<p>就会用cmd打开当前目录。</p>
+<p>我们只需要输入installer程序的前几个字母然后按一下<code>tab</code>键就会自动补齐全部名称。比如我的installer名称在商民的图叫<code>qt-online-installer-windows-x64-online.exe</code>那么我只需要输入<code>qt-onl</code>就能补齐这个名称。</p>
+<p><img src="../images/DH000003/16.png" alt="按tab键补齐名称"></p>
+<p>在.exe后面<strong>一个英文空格</strong>，然后在自己的exe后面粘贴进刚才图片中出现的清华源地址<code>--mirror https://mirrors.tuna.tsinghua.edu.cn/qt</code>。注意window和linux地址不一样。因为linux程序没有后缀. </p>
+<p>windows:<code>qt-xxxx.exe --mirror https://mirrors.tuna.tsinghua.edu.cn/qt</code></p>
+<p>linux为：<code>qt-xxxx --mirror https://mirrors.tuna.tsinghua.edu.cn/qt</code></p>
+<p>或者<code>qt-xxxx.run --mirror https://mirrors.tuna.tsinghua.edu.cn/qt</code></p>
+<p>在cmd中点击一下鼠标右键就能粘贴进去。qt-xxx为自己的实际名称。然后回车一下即可，回车之后它会自动弹出installer的界面。最终效果：</p>
+<p><img src="../images/DH000003/17.png" alt="补齐名称后边加入镜像参数"></p>
+<p><img src="../images/DH000003/18.png" alt="qt installer界面"></p>
+<p>点击next,然后填入刚才注册的账号。然后勾选一些条款再点击next.</p>
+<p><img src="../images/DH000003/19.png" alt=""></p>
+<p>这一步设置一下安装目录，自己要记得安装在哪就行。然后取消勾选Qt6.9(以后可能是其他6.X的版本)，勾选上自定义安装，因为我们需要装Qt5不是Qt6. 完成后点击下一步。</p>
+<p><img src="../images/DH000003/20.png" alt=""></p>
+<p>接下来选择<code>show</code>选项，先取消<code>Latest support releases</code>和<code>Preview</code>,然后勾选<code>Archive</code>,不勾选<code>Archive</code>将不会显示Qt5版本。</p>
+<p><img src="../images/DH000003/21.png" alt="勾选Archive"></p>
+<p>然后在qt列表下滑，找到qt5版本（只要是qt5.8以上都没啥大问题），勾选如图所示64位以及Qt chart (32-bit可以勾，我这勾了之后编译的时候需要指定32位编译还是64位编译，一般勾选64位就可以了，但是可以两个都勾选进行对比)。</p>
+<p><img src="../images/DH000003/22.png" alt="勾选32位或者64位，也可以同时勾选"></p>
+<p>然后点击下一步，同意一下条款啥的，静静等待进度条下载完即可。Liunx不要选<code>MSVC</code>. 如果刚才没设置镜像下载可能非常慢。(Qt chart建议选上，不然等下build会报错)</p>
+<p>linux用户如果run程序没反应先设置运行权限<code>chmod +x qtxxxx.run</code>然后再继续镜像链操作。</p>
+<p>至此Qt安装告一段落。总结一下就是注册账号，然后下载在线安装程序，设置一下镜像下载链接。</p>
+<h2 id="编译Spirit"><a href="#编译Spirit" class="headerlink" title="编译Spirit"></a>编译Spirit</h2><p>这一部分将会讲解Qt版本和<code>ImGui</code>版本的编译。装完qt之后Linux用户完全可以按照官网提示的方式进行编译，不用像windows设置什么visual studio 编译器版本。下面重点介绍windows上的编译。</p>
+<p>首先去github仓库把源码下载下来并且解压到你觉得ok的目录。</p>
+<p><img src="../images/DH000003/23.png" alt=""></p>
+<h3 id="使用Qt编译。"><a href="#使用Qt编译。" class="headerlink" title="使用Qt编译。"></a>使用Qt编译。</h3><p>（1）首先修改<code>ui-cpp</code>文件夹的<code>CMakeLists.txt</code>文件。建议用vscode或者notepad++等带行号的工具打开。定位到第104行，windows用户修改第104行,linux用户可以修改第108行。注意目录全部都是斜杠！不是反斜杠！把反斜杠改过来。</p>
+<p>把<code>&quot;C:/QT/5.7/msvc2015/&quot;</code>替换为自己的目录比如<code>&quot;C:/Qt/5.15.0/msvc2019_64&quot;</code>双引号别丢了。然后保存。（<strong>从这里可以看出Spirit默认用的是32为的Qt.</strong> 无所谓，问题不大，我们仍然可以指定64位Qt进行编译。路径中以<code>_64</code> 结尾的是64位的Qt,没有则是32位版本。如路径中<code>msvc2019_64</code> 是64位的Qt ）</p>
+<p><img src="../images/DH000003/24.png" alt="CMakeList.txt中指定Qt路径。如果两个版本的Qt都下载了，可以指定32位或者64位的Qt，取决于你自己。这个CmakeLists.txt在ui-cpp文件夹内，不是spirit主目录下的那个txt文件。"></p>
+<p>（2）使用cmd 或者powershell进入<code>spirit</code>的目录。如果不会使用<code>cd</code>命令，可以像上面那样在地址栏输入<code>cmd</code>进入。</p>
+<p><img src="../images/DH000003/25.png" alt=""></p>
+<p>此时cmd的箭头<code>&gt;</code>前会提示你所在的目录：<br><img src="../images/DH000003/26.png" alt=""></p>
+<p>然后输入<code>mkdir build &amp;&amp; cd build</code>（命令行创建build文件夹并进入该文件夹）或者手动在spirit文件夹内（<code>CMakeLists.txt</code>文件同一级目录下）新建build文件夹，然后用刚才地址栏输入cmd的方法进入build文件夹。最终使用命令行创建并进入build的效果：</p>
+<p><img src="../images/DH000003/27.png" alt=""></p>
+<p>（3）接下来输入<code>Cmkae -G</code>来确认一下编译器信息：</p>
+<p><img src="../images/DH000003/28.png" alt=""></p>
+<p>（4）然后再输入：<code>cmake -G &quot;Visual Studio 17 2022&quot; -A x64 ..</code>注意双引号和点不能省略。<strong>双引号的”Visual Studio 17 2022” 替换为你实际用cmake -G显示的内容。</strong> 意思是配置编译器为<code>Visual Studio 17 2022</code>且编译Windows 64位应用。回车之后会有一堆信息输出，等待它输出完。一般没有提示报错的话我们就进入下一步。如果你使用了32位的Qt，请使用<code>cmake -G &quot;Visual Studio 17 2022&quot; -A win32 ..</code> ，不然的话指定64为编译，使用32位Qt会报错。</p>
+<p><img src="../images/DH000003/29.png" alt=""></p>
+<p>一般最后输出<code>done</code>为配置成功。</p>
+<p><img src="../images/DH000003/30.png" alt=""></p>
+<p>接下来再输入<code>cmake --build . --config Release</code>,这个过程有点慢，需要耐心等待一会。只要没有停下来不要手动去关闭。如果Qt没有配置好的话这个过程就会报错（终端不输出红色的报错信息）。</p>
+<p>看到最后一行输出：<code>Building Custom Rule xxxx</code>就表示编译成功了！<img src="../images/DH000003/31.png" alt=""></p>
+<p>此时，在spirit目录下看到<code>spirit.exe</code>软件。（如果没看到这个提示以及没有.exe程序生成，那么是编译失败了，大概率是qt问题。是不是装了qt6或者是qt32位的却使用了64位编译？如果是后者可以把build文件夹内容全部删除，然后重新指定编译类型试试。）</p>
+<p><img src="../images/DH000003/32.png" alt="编译成功后Spirit目录下会生成.exe程序。"></p>
+<p>然后打开试试：</p>
+<p><img src="../images/DH000003/33.png" alt="spirit Qt版本界面"></p>
+<h3 id="ImGui编译。"><a href="#ImGui编译。" class="headerlink" title="ImGui编译。"></a><code>ImGui</code>编译。</h3><p>进入到下载好的<code>spirit</code>文件夹，找到<code>CMakeList.txt</code>文件，建议用vscode或者notepad++等带行号的工具打开。定位到第35和37行，把<code>SPIRIT_UI_USE_IMGUI</code>由<code>OFF</code>改为<code>ON</code>. 把<code>SPIRIT_UI_CXX_USE_QT</code>由<code>ON</code>改为<code>OFF</code> 如图所示：</p>
+<p><img src="../images/DH000003/34.png" alt=""></p>
+<p>改完之后保存。接着在<code>CMakeList.txt</code>同一级目录下用cmd或者powershell进入<code>build</code>文件夹。没有build就新建一个文件夹。可以进入到build文件夹，点击顶部栏地址，在最前面输入cmd 和英文空格然后回车，即可用cmd进入build文件夹。</p>
+<p>然后在cmd先输入<code>cmake -G &quot;Visual Studio 17 2022&quot; -A x64 ..</code>编译64位（或者<code>cmake -G &quot;Visual Studio 17 2022&quot; -A win32 ..</code>编译32位），后输入<code>cmake --build . --config Release</code>。没有报错的话同样会在spirit目录下看到<code>spirit.exe</code>程序。（如果之前构建过QT，build文件夹就会有之前的东西，请build文件夹的内容全部删除再进行<code>ImGui</code>构建）</p>
+<p><img src="../images/DH000003/35.png" alt="Spirit ImGui界面"></p>
+<h3 id="CUDA编译"><a href="#CUDA编译" class="headerlink" title="CUDA编译"></a>CUDA编译</h3><p>其实cuda编译是一样的，找到spirit目录下的<code>CMakeLists.txt</code> 定位到第23行，把<code>SPIRIT_USE_CUDA</code> 后面的<code>OFF</code> 改为<code>ON</code><br><img src="../images/DH000003/37.png" alt="修改主目录下的CMakeList.txt"><br>接着下滑到90行指定一下CUDA的路径。路径需要具体到版本号文件夹。<br><img src="../images/DH000003/38.png" alt="CUDA路径需要确定到版本号"><br>最后，同样的回到build文件夹，设置编译器进行编译。编译前请清除build文件夹的内容。不需要CUDA编译的时候记得改回去.</p>
+<h2 id="后续处理"><a href="#后续处理" class="headerlink" title="后续处理"></a>后续处理</h2><ol>
+<li>修改了<code>ImGui</code>之后想编译回Qt记得把OFF和On 改回去。</li>
+<li>你可以把<code>input</code>，<code>output</code>文件夹和<code>spirit.exe</code>单独复制到其它地方使用。</li>
+<li>每一次重新编译的时候建议把build的文件夹内容全部删除。</li>
+</ol>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>（如果qt还是有问题，编译的时候报错（一般情况下直接改CMakeLists.txt的qt路径是没有什么问题的）。）</p>
+<p>进入到Qt安装目录，你会发现有一个以版本号命名的文件夹如<code>5.15.0</code>,将里面<code>msvc</code>开头文件夹里面的bin目录以及Src文件夹里面的qtbase的bin目录添加进环境变量。即：</p>
+<ol>
+<li><code>C:\Qt\5.15.0\msvc2019_64\bin</code></li>
+<li><code>C:\Qt\5.15.0\Src\qtbase\bin</code>（如果有）</li>
+</ol>
+<p>添加方法为win11：找到设置-》系统-》关于-》找到<code>高级系统设置</code>。（linux可以添加进<code>~/.bashrc</code>）</p>
+<p><img src="../images/DH000003/4.png" alt=""></p>
+<p>然后选择选择<code>高级</code>页面，选择<code>环境变量</code></p>
+<p><img src="../images/DH000003/5.png" alt=""></p>
+<p>下滑找到<code>Path</code>然后双击它进入编辑</p>
+<p><img src="../images/DH000003/6.png" alt=""></p>
+<p>点击一下新建，输入路径。</p>
+<p><img src="../images/DH000003/36.png" alt=""></p>
+<p>最后点击三个ok点一下即可。</p>
+<p><img src="../images/DH000003/7.png" alt=""></p>
+<p>最后重新编译试一下。如果还是编译失败，可以仔细读一下报错信息。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://donghi007.github.io">Donghai</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://donghi007.github.io/9ae686d6.html">https://donghi007.github.io/9ae686d6.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://donghi007.github.io" target="_blank">Donghai's  Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%99%E7%A8%8B/">教程</a></div><div class="post-share"><div class="social-share" data-image="/img/profile.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/e966519e.html" title="Slurm集群上使用jupyter notebook的方法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Slurm集群上使用jupyter notebook的方法</div></div><div class="info-2"><div class="info-item-1">一、创建虚拟环境并安装jupyter lab在集群上使用conda creative -n &lt;your_envs&gt; python=3.10来创建一个python虚拟环境并且指定python版本为3.10 123conda create -n new_env_name python=3.10conda activate new_env_namepip install jupyterlab  二、编辑slurm脚本，在计算节点上运行jupyter 服务 先在集群里面创建一个文件夹存放运行jupyter lab的slurm脚本。该脚本的位置即为jupyter lab的工作目录。 创建一个slurm脚本运行jupyterlab  以下是一个slurm脚本运行jupyterlab 的例子: 1234567891011121314151617#!/bin/bash#SBATCH --partition=gpu#SBATCH --nodes=1 ##SBATCH --ntasks-per-node=1#SBATCH --cpus-per-task=4  ...</div></div></div></a><a class="pagination-related" href="/7643df1b.html" title="Micromagnetic.jl三角形模拟区域的设置"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Micromagnetic.jl三角形模拟区域的设置</div></div><div class="info-2"><div class="info-item-1">Micromagnetic.jl 是一款基于julia语言的微磁学模拟软件包官方doc地址为https://magneticsimulation.github.io/MicroMagnetic.jl/stable/ 思路 我们的思路是，在三角形区域内，饱和磁化强度为用户设置的数值，而在区域外为0. 因此我们定义一个函数名称为create_triangle_Ms 用以完成上述饱和磁化强度的设置。用户需要传入三个顶点的坐标值，注意在这里，坐标原点为左下角而非中心! 因此这个函数长这样： 12345678910111213141516171819202122232425262728293031323334353637383940414243# 创建三角形区域饱和磁化强度函数    function create_triangle_Ms(vertices::Tuple&#123;Tuple&#123;Float64,Float64&#125;, Tuple&#123;Float64,Float64&#125;,...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/e966519e.html" title="Slurm集群上使用jupyter notebook的方法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-08</div><div class="info-item-2">Slurm集群上使用jupyter notebook的方法</div></div><div class="info-2"><div class="info-item-1">一、创建虚拟环境并安装jupyter lab在集群上使用conda creative -n &lt;your_envs&gt; python=3.10来创建一个python虚拟环境并且指定python版本为3.10 123conda create -n new_env_name python=3.10conda activate new_env_namepip install jupyterlab  二、编辑slurm脚本，在计算节点上运行jupyter 服务 先在集群里面创建一个文件夹存放运行jupyter lab的slurm脚本。该脚本的位置即为jupyter lab的工作目录。 创建一个slurm脚本运行jupyterlab  以下是一个slurm脚本运行jupyterlab 的例子: 1234567891011121314151617#!/bin/bash#SBATCH --partition=gpu#SBATCH --nodes=1 ##SBATCH --ntasks-per-node=1#SBATCH --cpus-per-task=4  ...</div></div></div></a><a class="pagination-related" href="/a59a3594.html" title="如何优雅地创建或管理Python虚拟环境"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-18</div><div class="info-item-2">如何优雅地创建或管理Python虚拟环境</div></div><div class="info-2"><div class="info-item-1">为什么要创建虚拟环境？不用虚拟环境行不行？当然你可以不用虚拟环境。创建虚拟环境是为了方便管理我们本地的Python项目。比如我有两个项目A和B. A和B之间它们所需要的包依赖版本可能不一样，甚至python版本也不一样。如果两个项目混在一起运行，当项目A崩溃的时候可能会影响到项目B....</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/profile.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Donghai</div><div class="author-info-description">充满敬畏之心</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Donghi007" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/info" target="_blank" title="Click Me"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#windows-C-C-%E7%BC%96%E8%AF%91%E5%99%A8%E4%B8%8ECmake%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text">windows C&#x2F;C++编译器与Cmake的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Qt-%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">Qt 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91Spirit"><span class="toc-number">3.</span> <span class="toc-text">编译Spirit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Qt%E7%BC%96%E8%AF%91%E3%80%82"><span class="toc-number">3.1.</span> <span class="toc-text">使用Qt编译。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ImGui%E7%BC%96%E8%AF%91%E3%80%82"><span class="toc-number">3.2.</span> <span class="toc-text">ImGui编译。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CUDA%E7%BC%96%E8%AF%91"><span class="toc-number">3.3.</span> <span class="toc-text">CUDA编译</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD%E5%A4%84%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">后续处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">5.</span> <span class="toc-text">环境配置</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/804332c6.html" title="Skyrmion or Bubble?">Skyrmion or Bubble?</a><time datetime="2025-09-29T14:41:47.000Z" title="发表于 2025-09-29 22:41:47">2025-09-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/7643df1b.html" title="Micromagnetic.jl三角形模拟区域的设置">Micromagnetic.jl三角形模拟区域的设置</a><time datetime="2025-09-28T13:31:00.000Z" title="发表于 2025-09-28 21:31:00">2025-09-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/9ae686d6.html" title="Windows下Spirit的安装">Windows下Spirit的安装</a><time datetime="2025-06-29T13:50:14.000Z" title="发表于 2025-06-29 21:50:14">2025-06-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/e966519e.html" title="Slurm集群上使用jupyter notebook的方法">Slurm集群上使用jupyter notebook的方法</a><time datetime="2025-06-08T12:08:45.000Z" title="发表于 2025-06-08 20:08:45">2025-06-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/8ba9dd18.html" title="Fourier级数与Fourier变换">Fourier级数与Fourier变换</a><time datetime="2025-05-19T13:50:14.000Z" title="发表于 2025-05-19 21:50:14">2025-05-19</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2025 By Donghai</div><div class="framework-info"><span>Powered by </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo </a><span>& </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="https://cdnjs.cloudflare.com/ajax/libs/busuanzi/2.3.0/bsz.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
